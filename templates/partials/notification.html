@@ -1,0 +1,21 @@
+{% if notification %}
+<div class="notification-banner {{ notification.type }} show">
+    <button class="close-btn" onclick="this.parentElement.remove()">×</button>
+    <h3>
+        {% if notification.type == 'success' %}✅{% elif notification.type == 'info' %}ℹ️{% elif notification.type ==
+        'warning' %}⚠️{% else %}❌{% endif %}
+        {{ notification.title }}
+    </h3>
+    <p>{{ notification.message }}</p>
+</div>
+<script>
+    // Auto-hide notification after 4 seconds
+    setTimeout(() => {
+        const banner = document.querySelector('.notification-banner.show');
+        if (banner) {
+            banner.classList.remove('show');
+            setTimeout(() => banner.remove(), 400);
+        }
+    }, 4000);
+</script>
+{% endif %}

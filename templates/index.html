@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Header -->
+<header class="header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <img src="/assets/images/logo.png" alt="شعار Penthu" onerror="this.style.display='none'">
+                <h1>Penthu</h1>
+            </div>
+            <nav class="nav" aria-label="القائمة الرئيسية">
+                <a href="#features">المميزات</a>
+                <a href="#screenshots">الواجهات</a>
+                <a href="#download">التحميل</a>
+            </nav>
+            <button class="btn btn-primary btn-download-header" hx-post="/download" hx-target="#notification-container"
+                hx-swap="innerHTML">
+                <span>📱 حمّل التطبيق</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content animate-on-scroll">
+                    <h2 class="hero-title">
+                        رعايتك الصحية في <span class="gradient-text">تطبيق واحد</span>
+                    </h2>
+                    <p class="hero-description">
+                        تطبيق Penthu هو الحل الأمثل لإدارة صحتك بشكل شامل.
+                        احجز مواعيدك، استشر الأطباء، واحصل على أدويتك بسهولة.
+                        تطبيق Penthu هو الخيار الأمثل لرعايتك الصحية.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary btn-lg" hx-post="/download" hx-target="#notification-container"
+                            hx-swap="innerHTML">
+                            <span>حمّل التطبيق الآن</span>
+                        </button>
+                        <a href="#features" class="btn btn-outline btn-lg">
+                            <span>تعرف على المميزات</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image animate-on-scroll">
+                    <div class="phone-mockup">
+                        <img src="/assets/images/phone-mockup.png" alt="واجهة Penthu"
+                            onerror="this.style.display='none'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">مميزات التطبيق</h2>
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll">
+                    <div class="icon">📅</div>
+                    <h3>حجز المواعيد</h3>
+                    <p>احجز موعدك مع أفضل الأطباء بسهولة وسرعة</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="icon">💊</div>
+                    <h3>طلب الأدوية</h3>
+                    <p>اطلب أدويتك واستلمها في منزلك</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="icon">📱</div>
+                    <h3>استشارات فورية</h3>
+                    <p>تواصل مع الأطباء عبر الفيديو أو الرسائل</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="icon">🔒</div>
+                    <h3>آمن ومحمي</h3>
+                    <p>بياناتك الصحية محمية بأعلى معايير الأمان</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section id="screenshots" class="screenshots-section">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">واجهات التطبيق</h2>
+            <div class="screenshots-container">
+                <div class="screenshot-card animate-on-scroll">
+                    <img src="/assets/images/screen1.png" alt="الشاشة الرئيسية" onerror="this.style.display='none'">
+                </div>
+                <div class="screenshot-card animate-on-scroll">
+                    <img src="/assets/images/screen2.png" alt="حجز المواعيد" onerror="this.style.display='none'">
+                </div>
+                <div class="screenshot-card animate-on-scroll">
+                    <img src="/assets/images/screen3.png" alt="الصيدلية" onerror="this.style.display='none'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download-section">
+        <div class="container">
+            <div class="download-content animate-on-scroll">
+                <h2>ابدأ رحلتك الصحية اليوم</h2>
+                <p>حمّل تطبيق Penthu الآن واستمتع بتجربة طبية متكاملة</p>
+                <div class="download-buttons">
+                    <button class="download-btn" hx-post="/store/appstore" hx-target="#notification-container"
+                        hx-swap="innerHTML">
+                        <span class="download-icon">🍎</span>
+                        <div>
+                            <small>متوفر على</small>
+                            <strong>App Store</strong>
+                        </div>
+                    </button>
+                    <button class="download-btn" hx-post="/store/playstore" hx-target="#notification-container"
+                        hx-swap="innerHTML">
+                        <span class="download-icon">▶️</span>
+                        <div>
+                            <small>متوفر على</small>
+                            <strong>Google Play</strong>
+                        </div>
+                    </button>
+                </div>
+                <div class="direct-download">
+                    <p style="margin-top: 2rem; opacity: 0.8;">أو</p>
+                    <button class="btn btn-outline btn-lg" hx-post="/download" hx-target="#notification-container"
+                        hx-swap="innerHTML" style="margin-top: 1rem;">
+                        <span>⬇️ تحميل مباشر APK</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <h2>Penthu</h2>
+                    <p>الحل الأمثل للرعاية الصحية</p>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>روابط سريعة</h3>
+                <div class="footer-links">
+                    <a href="#features">المميزات</a>
+                    <a href="#screenshots">الواجهات</a>
+                    <a href="#download">التحميل</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>تواصل معنا</h3>
+                <div class="footer-links">
+                    <a href="#">support@penthu.com</a>
+                    <a href="#">+966 XX XXX XXXX</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Penthu. جميع الحقوق محفوظة.</p>
+        </div>
+    </div>
+</footer>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    // Minimal client-side JavaScript for CSS animations only
+    document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+    });
+</script>
+{% endblock %}

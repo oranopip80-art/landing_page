@@ -1,193 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>تطبيق Penthu - رفيقك الصحي الأول</title>
-    <meta name="description"
-        content="تطبيق Penthu يوفر لك كافة احتياجاتك الطبية والدوائية بكل سهولة وسرعة. حمل التطبيق الآن وتمتع بتجربة صحية متكاملة.">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
-
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="assets/images/logo.png" alt="شعار Penthu" onerror="this.style.display='none'">
-                    <h1>Penthu</h1>
-                </div>
-                <nav class="nav" aria-label="القائمة الرئيسية">
-                    <a href="#features">المميزات</a>
-                    <a href="#screenshots">الواجهات</a>
-                    <a href="#download">التحميل</a>
-                </nav>
-                <button class="btn btn-primary btn-download-header" onclick="downloadApp(event)">
-                    <span>📱 حمّل التطبيق</span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-grid">
-                <div class="hero-content animate-on-scroll">
-                    <h1 class="hero-title">
-                        صحتك وراحتك..
-                        <br>
-                        <span class="gradient-text">بين يديك</span>
-                    </h1>
-                    <p class="hero-description">
-                        اطلب أدويتك ومستلزماتك الطبية بكل سهولة، وسنوصلها لباب بيتك.
-                        تطبيق Penthu هو الخيار الأمثل لرعايتك الصحية.
-                    </p>
-                    <div class="hero-buttons">
-                        <button class="btn btn-primary btn-lg" onclick="downloadApp(event)">
-                            <span>حمّل التطبيق الآن</span>
-                        </button>
-                        <a href="#features" class="btn btn-outline btn-lg">
-                            <span>تعرف على المميزات</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="hero-image animate-on-scroll">
-                    <div class="phone-mockup">
-                        <img src="assets/images/1765646208786.jpg" alt="واجهة تطبيق Penthu" loading="lazy">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <h2 class="section-title animate-on-scroll">لماذا تختار Penthu؟</h2>
-            <div class="features-grid">
-                <div class="feature-card animate-on-scroll">
-                    <div class="icon">🚀</div>
-                    <h3>توصيل سريع</h3>
-                    <p>نصلك بأسرع وقت ممكن لنضمن حصولك على احتياجاتك الطبية فوراً.</p>
-                </div>
-                <div class="feature-card animate-on-scroll">
-                    <div class="icon">💊</div>
-                    <h3>تنوع المنتجات</h3>
-                    <p>تشكيلة واسعة من الأدوية، الفيتامينات، ومستحضرات التجميل.</p>
-                </div>
-                <div class="feature-card animate-on-scroll">
-                    <div class="icon">🛡️</div>
-                    <h3>آمن وموثوق</h3>
-                    <p>تعامل آمن وسري مع كافة بياناتك ووصفاتك الطبية.</p>
-                </div>
-                <div class="feature-card animate-on-scroll">
-                    <div class="icon">💬</div>
-                    <h3>استشارات طبية</h3>
-                    <p>تواصل مع صيادلة متخصصين للحصول على النصائح والإرشادات.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Screenshots Section -->
-    <section id="screenshots" class="screenshots-section">
-        <div class="container">
-            <h2 class="section-title animate-on-scroll">جولة داخل التطبيق</h2>
-            <div class="screenshots-container">
-                <div class="screenshot-card animate-on-scroll">
-                    <img src="assets/images/1765646208786.jpg" alt="واجهة التطبيق - الشاشة الرئيسية" loading="lazy">
-                </div>
-                <div class="screenshot-card animate-on-scroll">
-                    <img src="assets/images/1765643194964.jpg" alt="واجهة التطبيق - المنتجات" loading="lazy">
-                </div>
-                <div class="screenshot-card animate-on-scroll">
-                    <img src="assets/images/1765643194970.jpg" alt="واجهة التطبيق - السلة" loading="lazy">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Download Section -->
-    <section id="download" class="download-section">
-        <div class="container">
-            <div class="download-content animate-on-scroll">
-                <h2>ابدأ رحلتك الصحية اليوم</h2>
-                <p>حمّل تطبيق Penthu الآن واستمتع بتجربة طبية متكاملة</p>
-                <div class="download-buttons">
-                    <button class="download-btn" onclick="showNotAvailable(event, 'App Store')" data-store="appstore">
-                        <span class="download-icon">🍎</span>
-                        <div>
-                            <small>متوفر على</small>
-                            <strong>App Store</strong>
-                        </div>
-                    </button>
-                    <button class="download-btn" onclick="showNotAvailable(event, 'Google Play')"
-                        data-store="playstore">
-                        <span class="download-icon">▶️</span>
-                        <div>
-                            <small>متوفر على</small>
-                            <strong>Google Play</strong>
-                        </div>
-                    </button>
-                </div>
-                <div class="direct-download">
-                    <p style="margin-top: 2rem; opacity: 0.8;">أو</p>
-                    <button class="btn btn-outline btn-lg" onclick="downloadApp(event)" style="margin-top: 1rem;">
-                        <span>⬇️ تحميل مباشر APK</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <h2>Penthu</h2>
-                        <p>شريكك الصحي الموثوق.</p>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>روابط سريعة</h3>
-                    <ul class="footer-links">
-                        <li><a href="#features">المميزات</a></li>
-                        <li><a href="#screenshots">الواجهات</a></li>
-                        <li><a href="#download">التحميل</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>قانوني</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">الشروط والأحكام</a></li>
-                        <li><a href="#">سياسة الخصوصية</a></li>
-                        <li><a href="#">مساعدة</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 تطبيق Penthu. جميع الحقوق محفوظة.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Notification Banner -->
-    <div id="notification-banner" class="notification-banner"></div>
-
-    <script src="js/script.js"></script>
-</body>
-
-</html>
