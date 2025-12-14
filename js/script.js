@@ -11,21 +11,33 @@ function downloadApp(event) {
     event.stopPropagation();
 
     // Show downloading notification
-    showNotification('success', 'جاري التحميل...', 'سيبدأ تحميل التطبيق الآن');
+    showNotification('info', 'جاري التحميل...', 'سيبدأ تحميل التطبيق خلال لحظات');
 
-    // Create a temporary download link
-    // Replace 'penthu-app.apk' with your actual APK file path
+    // Create download link (simple approach)
     const link = document.createElement('a');
-    link.href = 'assets/penthu-app.apk'; // Update this path to your APK file
-    link.download = 'Penthu.apk';
+    link.href = 'assets/penthu-app.apk';
+    link.download = 'Penthu-v3.5.7.apk';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
 
-    // Show success message after a short delay
+    // Show success message
     setTimeout(() => {
-        showNotification('success', 'تم بدء التحميل! 🎉', 'يتم الآن تحميل تطبيق Penthu');
-    }, 500);
+        showNotification('success', 'تم بدء التحميل! 🎉', 'افتح الملف بعد التحميل لتثبيت التطبيق');
+    }, 800);
+
+    // Try to open app after delay (if installed)
+    setTimeout(() => {
+        tryOpenApp();
+    }, 2000);
+}
+
+/**
+ * Try to open the app using deep link
+ */
+function tryOpenApp() {
+    const appScheme = 'penthu://app';
+    window.location.href = appScheme;
 }
 
 /**
