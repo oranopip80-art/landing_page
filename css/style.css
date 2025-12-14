@@ -180,6 +180,20 @@ ul {
     gap: var(--space-md);
 }
 
+/* Download button in header */
+.btn-download-header {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .btn-download-header {
+        display: inline-flex;
+    }
+}
+
 .logo {
     display: flex;
     align-items: center;
@@ -1063,4 +1077,94 @@ section.in-view {
 
 .page-loading * {
     cursor: wait !important;
+}
+
+/* ============================================
+   16. NOTIFICATION BANNER
+   ============================================ */
+.notification-banner {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-150%);
+    background: linear-gradient(135deg, #2C3E50, #34495e);
+    color: white;
+    padding: 1.5rem 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    min-width: 300px;
+    max-width: 500px;
+    text-align: center;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.notification-banner.show {
+    transform: translateX(-50%) translateY(0);
+}
+
+.notification-banner.success {
+    background: linear-gradient(135deg, #009688, #00796B);
+}
+
+.notification-banner.warning {
+    background: linear-gradient(135deg, #FF7043, #F4511E);
+}
+
+.notification-banner.info {
+    background: linear-gradient(135deg, #2196F3, #1976D2);
+}
+
+.notification-banner h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.notification-banner p {
+    font-size: 0.95rem;
+    opacity: 0.95;
+    margin: 0;
+}
+
+.notification-banner .close-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.notification-banner .close-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+    .notification-banner {
+        top: 80px;
+        left: 1rem;
+        right: 1rem;
+        transform: translateY(-150%);
+        min-width: auto;
+        max-width: none;
+    }
+
+    .notification-banner.show {
+        transform: translateY(0);
+    }
 }

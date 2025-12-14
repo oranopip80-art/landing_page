@@ -1,4 +1,113 @@
 // ============================================
+// DOWNLOAD & NOTIFICATION FUNCTIONS
+// ============================================
+
+/**
+ * Download App Function
+ * Downloads the APK file when button is clicked
+ */
+function downloadApp(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    // Show downloading notification
+    showNotification('success', 'جاري التحميل...', 'سيبدأ تحميل التطبيق الآن');
+
+    // Create a temporary download link
+    // Replace 'penthu-app.apk' with your actual APK file path
+    const link = document.createElement('a');
+    link.href = 'assets/penthu-app.apk'; // Update this path to your APK file
+    link.download = 'Penthu.apk';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    // Show success message after a short delay
+    setTimeout(() => {
+        showNotification('success', 'تم بدء التحميل! 🎉', 'يتم الآن تحميل تطبيق Penthu');
+    }, 500);
+}
+
+/**
+ * Show Not Available Banner
+ * Shows a notification when App Store or Play Store is clicked
+ */
+function showNotAvailable(event, storeName) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    showNotification(
+        'info',
+        `${storeName} - قريباً! 🚀`,
+        `التطبيق غير متوفر على ${storeName} حالياً. يمكنك التحميل المباشر للـ APK.`
+    );
+}
+
+/**
+ * Show Notification Banner
+ * @param {string} type - Type of notification (success, warning, info, error)
+ * @param {string} title - Notification title
+ * @param {string} message - Notification message
+ * @param {number} duration - Duration in milliseconds (default 4000)
+ */
+function showNotification(type = 'info', title = '', message = '', duration = 4000) {
+    const banner = document.getElementById('notification-banner');
+    if (!banner) return;
+
+    // Remove existing classes
+    banner.className = 'notification-banner';
+
+    // Add type class
+    banner.classList.add(type);
+
+    // Set icon based on type
+    let icon = '';
+    switch (type) {
+        case 'success':
+            icon = '✅';
+            break;
+        case 'warning':
+            icon = '⚠️';
+            break;
+        case 'info':
+            icon = 'ℹ️';
+            break;
+        case 'error':
+            icon = '❌';
+            break;
+        default:
+            icon = '📱';
+    }
+
+    // Set content
+    banner.innerHTML = `
+        <button class="close-btn" onclick="hideNotification()">×</button>
+        <h3>${icon} ${title}</h3>
+        <p>${message}</p>
+    `;
+
+    // Show banner
+    setTimeout(() => {
+        banner.classList.add('show');
+    }, 100);
+
+    // Auto hide after duration
+    setTimeout(() => {
+        hideNotification();
+    }, duration);
+}
+
+/**
+ * Hide Notification Banner
+ */
+function hideNotification() {
+    const banner = document.getElementById('notification-banner');
+    if (banner) {
+        banner.classList.remove('show');
+    }
+}
+
+// ============================================
 // PROFESSIONAL ANIMATION SYSTEM - PENTHU
 // Enhanced with Page Transitions
 // ============================================
