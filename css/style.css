@@ -1,24 +1,79 @@
-/* Global Styles */
+/* ============================================
+   PENTHU LANDING PAGE - PROFESSIONAL STYLES
+   ============================================ */
+
+/* ============================================
+   1. CSS CUSTOM PROPERTIES (VARIABLES)
+   ============================================ */
 :root {
+    /* Colors */
     --primary-color: #009688;
-    /* Teal */
+    --primary-dark: #00796B;
+    --primary-light: #4DB6AC;
     --secondary-color: #2C3E50;
-    /* Navy Blue */
     --accent-color: #FF7043;
-    /* Soft Coral */
     --text-color: #333;
-    --light-text: #666;
+    --text-light: #666;
+    --text-lighter: #999;
     --bg-color: #f8f9fa;
     --white: #ffffff;
+    --black: #000000;
+
+    /* Typography */
     --font-family: 'Tajawal', sans-serif;
-    --radius: 12px;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+    --font-weight-black: 800;
+
+    /* Spacing Scale */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+    --space-2xl: 4rem;
+    --space-3xl: 6rem;
+
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.2);
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.5s ease;
+
+    /* Container */
+    --container-max-width: 1200px;
+    --container-padding: 1rem;
 }
 
-* {
+/* ============================================
+   2. RESET & BASE STYLES
+   ============================================ */
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -27,45 +82,108 @@ body {
     background-color: var(--bg-color);
     line-height: 1.6;
     direction: rtl;
+    overflow-x: hidden;
+    opacity: 0;
+    animation: pageEnter 0.6s ease-out forwards;
 }
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
+/* Page Enter Animation */
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+        transform: scale(1.02);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Page Exit Animation (when link is clicked) */
+body.page-exit {
+    animation: pageExit 0.4s ease-in forwards;
+}
+
+@keyframes pageExit {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 a {
     text-decoration: none;
     color: inherit;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
 }
 
 ul {
     list-style: none;
 }
 
-/* Header */
+/* ============================================
+   3. UTILITY CLASSES
+   ============================================ */
+.container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ============================================
+   4. HEADER
+   ============================================ */
 .header {
     background-color: var(--white);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow-sm);
     padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
+    animation: slideDown 0.5s ease-out;
+    transition: all var(--transition-base);
 }
 
-.header .container {
+/* Header hide on scroll down, show on scroll up */
+.header.header-hidden {
+    transform: translateY(-100%);
+}
+
+.header.header-visible {
+    transform: translateY(0);
+}
+
+.header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: var(--space-md);
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.75rem;
 }
 
 .logo img {
@@ -76,55 +194,67 @@ ul {
 .logo h1 {
     font-size: 1.5rem;
     color: var(--secondary-color);
-    font-weight: 800;
+    font-weight: var(--font-weight-black);
 }
 
 .nav {
     display: none;
 }
 
-@media (min-width: 768px) {
-    .nav {
-        display: flex;
-        gap: 2rem;
-    }
-
-    .nav a {
-        font-weight: 500;
-        color: var(--text-color);
-    }
-
-    .nav a:hover {
-        color: var(--primary-color);
-    }
-}
-
-/* Buttons */
+/* ============================================
+   5. BUTTONS
+   ============================================ */
 .btn {
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: var(--radius);
-    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-full);
+    font-weight: var(--font-weight-bold);
+    font-size: 1rem;
     cursor: pointer;
     text-align: center;
+    transition: all var(--transition-base);
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.btn span {
+    position: relative;
+    z-index: 2;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(-100%);
+    transition: transform var(--transition-base);
+    z-index: 1;
+}
+
+.btn:hover::before {
+    transform: translateX(0);
 }
 
 .btn-primary {
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     color: var(--white);
-    border: 2px solid var(--primary-color);
+    box-shadow: var(--shadow-md);
 }
 
 .btn-primary:hover {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
 }
 
 .btn-outline {
     background-color: transparent;
     color: var(--secondary-color);
-    border: 2px solid var(--secondary-color);
+    border-color: var(--secondary-color);
 }
 
 .btn-outline:hover {
@@ -133,135 +263,126 @@ ul {
 }
 
 .btn-lg {
-    padding: 12px 30px;
+    padding: 1rem 2rem;
     font-size: 1.1rem;
 }
 
-/* Hero Section */
+/* ============================================
+   6. HERO SECTION
+   ============================================ */
 .hero {
-    padding: 4rem 0;
-    background: linear-gradient(135deg, var(--white) 0%, #e0f7fa 100%);
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #dbeafe 100%);
+    padding: var(--space-2xl) 0;
+    position: relative;
     overflow: hidden;
 }
 
-.hero .container {
-    display: flex;
-    flex-direction: column;
+/* Modern geometric patterns */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 150, 136, 0.12) 0%, rgba(0, 150, 136, 0.05) 40%, transparent 70%);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+    filter: blur(60px);
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    left: -5%;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(255, 112, 67, 0.1) 0%, rgba(255, 112, 67, 0.04) 40%, transparent 70%);
+    border-radius: 50%;
+    animation: float 8s ease-in-out infinite reverse;
+    filter: blur(60px);
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
     align-items: center;
-    text-align: center;
-    gap: 3rem;
     position: relative;
     z-index: 1;
 }
 
-@media (min-width: 992px) {
-    .hero .container {
-        flex-direction: row;
-        justify-content: space-between;
-        text-align: right;
-        /* RTL */
-        align-items: center;
-    }
-
-    .hero-content {
-        max-width: 50%;
-        text-align: right;
-        align-items: flex-start;
-    }
-
-    .hero-image {
-        max-width: 45%;
-        display: flex;
-        justify-content: flex-end;
-    }
-
-    .hero-buttons {
-        justify-content: flex-start;
-    }
-}
-
 .hero-content {
-    max-width: 600px;
+    text-align: center;
 }
 
-.hero-content h1 {
-    font-size: 2.5rem;
+.hero-title {
+    font-size: 2rem;
     line-height: 1.2;
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-md);
     color: var(--secondary-color);
+    font-weight: var(--font-weight-black);
 }
 
-@media (max-width: 768px) {
-    .hero-content h1 {
-        font-size: 2rem;
-    }
-
-    .hero {
-        padding: 2rem 0;
-    }
-}
-
-.hero-content span {
-    color: var(--primary-color);
-}
-
-.hero-content p {
+.hero-description {
     font-size: 1.1rem;
-    color: var(--light-text);
-    margin-bottom: 2rem;
+    color: var(--text-light);
+    margin-bottom: var(--space-lg);
+    line-height: 1.8;
 }
 
 .hero-buttons {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
+}
+
+.hero-image {
+    display: flex;
     justify-content: center;
-    gap: 1rem;
+    align-items: center;
 }
 
 .phone-mockup {
     width: 280px;
-    max-width: 100%;
-    /* Ensure it fits on small screens */
-    height: 605px;
-    /* Taller to match aspect ratio */
+    max-width: 90%;
+    aspect-ratio: 9 / 19.5;
     background-color: #000;
     border-radius: 40px;
-    border: 12px solid #333;
-    /* Thicker bezel */
-    position: relative;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* Center image */
-    text-align: right;
+    border: 10px solid #2c2c2c;
+    box-shadow: var(--shadow-xl);
     overflow: hidden;
-    /* Ensure image clips */
-    margin: 0 auto;
-    /* Center it */
+    transition: transform var(--transition-slow);
 }
 
-@media (max-width: 400px) {
-    .phone-mockup {
-        height: auto;
-        aspect-ratio: 9/19.5;
-        /* maintain aspect ratio */
-        border-width: 8px;
-    }
+.phone-mockup:hover {
+    transform: scale(1.03) rotate(2deg);
 }
 
-.hero-content {
-    align-items: flex-start;
-    text-align: right;
+.phone-mockup img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
+/* ============================================
+   7. FEATURES SECTION
+   ============================================ */
+.features {
+    padding: var(--space-3xl) 0;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
 
 .section-title {
     text-align: center;
     font-size: 2rem;
     color: var(--secondary-color);
-    margin-bottom: 3rem;
+    margin-bottom: var(--space-xl);
+    font-weight: var(--font-weight-black);
     position: relative;
+    padding-bottom: var(--space-md);
 }
 
 .section-title::after {
@@ -269,154 +390,677 @@ ul {
     display: block;
     width: 60px;
     height: 4px;
-    background-color: var(--primary-color);
-    margin: 10px auto 0;
-    border-radius: 2px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    margin: var(--space-sm) auto 0;
+    border-radius: var(--radius-full);
 }
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
 }
 
 .feature-card {
     background-color: var(--bg-color);
-    padding: 2rem;
-    border-radius: var(--radius);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
     text-align: center;
-    transition: transform 0.3s;
+    transition: all var(--transition-base);
+    border: 2px solid transparent;
 }
 
 .feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-light);
+    background-color: var(--white);
 }
 
 .feature-card .icon {
     font-size: 3rem;
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-md);
+    transition: transform var(--transition-base);
+    display: inline-block;
+}
+
+.feature-card:hover .icon {
+    transform: scale(1.2) rotateY(180deg);
 }
 
 .feature-card h3 {
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-sm);
     color: var(--secondary-color);
+    font-size: 1.3rem;
+    font-weight: var(--font-weight-bold);
 }
 
 .feature-card p {
-    color: var(--light-text);
+    color: var(--text-light);
+    line-height: 1.8;
 }
 
-/* Screenshots Section */
+/* ============================================
+   8. SCREENSHOTS SECTION
+   ============================================ */
 .screenshots-section {
-    padding: 5rem 0;
-    background-color: #eaf6f6;
-    /* Very light teal */
+    padding: var(--space-3xl) 0;
+    background: linear-gradient(135deg, #ecfeff 0%, #cffafe 50%, #f0fdfa 100%);
+    position: relative;
+}
+
+.screenshots-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle at 20% 50%, rgba(14, 165, 233, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .screenshots-container {
     display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    padding: 20px 0;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-lg);
+    padding: var(--space-lg) 0;
 }
 
 .screenshot-card {
-    width: 280px;
-    height: 605px;
+    width: 260px;
+    max-width: 90%;
+    aspect-ratio: 9 / 19.5;
     border-radius: 40px;
     overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    border: 12px solid #333;
-    background-color: #333;
-    transition: transform 0.3s ease;
+    box-shadow: var(--shadow-lg);
+    border: 10px solid #2c2c2c;
+    background-color: #000;
+    transition: all var(--transition-slow);
 }
 
 .screenshot-card:hover {
     transform: scale(1.05);
+    box-shadow: var(--shadow-xl);
 }
 
 .screenshot-card img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    /* Changed from cover to contain */
-    display: block;
-    background-color: #000;
-    /* Black background for letterboxing */
+    object-fit: cover;
 }
 
-/* Footer */
+/* ============================================
+   9. DOWNLOAD SECTION
+   ============================================ */
+.download-section {
+    padding: var(--space-3xl) 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: var(--white);
+    text-align: center;
+}
+
+.download-content h2 {
+    font-size: 2rem;
+    margin-bottom: var(--space-md);
+    font-weight: var(--font-weight-black);
+}
+
+.download-content p {
+    font-size: 1.1rem;
+    margin-bottom: var(--space-xl);
+    opacity: 0.95;
+}
+
+.download-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    align-items: center;
+}
+
+.download-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    background-color: var(--white);
+    color: var(--secondary-color);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+    min-width: 200px;
+}
+
+.download-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+.download-icon {
+    font-size: 2.5rem;
+}
+
+.download-btn div {
+    text-align: right;
+}
+
+.download-btn small {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+.download-btn strong {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: var(--font-weight-bold);
+}
+
+/* ============================================
+   10. FOOTER
+   ============================================ */
 .footer {
     background-color: #2b2d42;
     color: #edf2f4;
-    padding: 3rem 0 1rem;
+    padding: var(--space-xl) 0 var(--space-md);
 }
 
 .footer-content {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
     text-align: center;
 }
 
 .footer-logo h2 {
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
+    color: var(--primary-light);
+    margin-bottom: var(--space-xs);
+    font-size: 1.5rem;
 }
 
-.footer-links ul {
+.footer-logo p {
+    color: #8d99ae;
+}
+
+.footer-section h3 {
+    margin-bottom: var(--space-sm);
+    color: var(--white);
+    font-size: 1.1rem;
+}
+
+.footer-links {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--space-xs);
+}
+
+.footer-links a {
+    color: #8d99ae;
+    transition: all var(--transition-base);
+    position: relative;
+    display: inline-block;
 }
 
 .footer-links a:hover {
-    color: var(--primary-color);
+    color: var(--primary-light);
+    transform: translateX(5px);
 }
 
 .footer-bottom {
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 1.5rem;
+    padding-top: var(--space-md);
     font-size: 0.9rem;
     color: #8d99ae;
 }
 
-@media (min-width: 768px) {
-    .footer-content {
-        flex-direction: row;
-        justify-content: space-between;
-        text-align: right;
+/* ============================================
+   11. PROFESSIONAL ANIMATIONS
+   ============================================ */
+
+/* Keyframe Animations */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
     }
 
-    .footer-links ul {
-        align-items: flex-start;
+    to {
+        transform: translateY(0);
+        opacity: 1;
     }
 }
 
-/* Animations */
-/* Animations */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0) translateX(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-20px) translateX(15px) scale(1.05);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Scroll-triggered animations - Faster */
 .animate-on-scroll {
     opacity: 0;
-    transform: translateY(30px) scale(0.95);
-    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateY(30px) scale(0.97);
+    transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: opacity, transform;
 }
-
-
 
 .animate-on-scroll.visible {
     opacity: 1;
     transform: translateY(0) scale(1);
 }
 
+/* Hero content animation - Faster */
+.hero-content {
+    animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+.hero-image {
+    animation: fadeInScale 0.8s ease-out 0.2s both;
+}
+
+/* Feature cards staggered animation - Faster */
+.feature-card:nth-child(1) {
+    transition-delay: 0.05s;
+}
+
+.feature-card:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+.feature-card:nth-child(3) {
+    transition-delay: 0.15s;
+}
+
+.feature-card:nth-child(4) {
+    transition-delay: 0.2s;
+}
+
+/* Screenshot cards animation - Faster */
+.screenshot-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+}
+
+.screenshot-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.screenshot-card:nth-child(1) {
+    transition-delay: 0.05s;
+}
+
+.screenshot-card:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+.screenshot-card:nth-child(3) {
+    transition-delay: 0.15s;
+}
+
+/* Gradient text animation */
+.gradient-text {
+    background-size: 200% auto;
+    animation: shimmer 3s linear infinite;
+}
+
+/* Logo pulse on hover */
+.logo:hover {
+    animation: pulse 0.6s ease-in-out;
+}
+
+/* Smooth hover transitions - no layout shift */
+.nav a,
+.footer-links a,
+.download-btn {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Button hover animation - no layout shift */
+.btn {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+.btn:hover {
+    transform: translateY(-3px) translateZ(0);
+}
+
+.btn:active {
+    transform: translateY(-1px) translateZ(0);
+}
+
+/* Phone mockup hover effect */
+.phone-mockup {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-style: preserve-3d;
+}
+
+.phone-mockup:hover {
+    transform: scale(1.03) rotateY(5deg) rotateX(-3deg);
+}
+
+/* Icon rotation on hover */
+.feature-card .icon {
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    display: inline-block;
+    backface-visibility: hidden;
+}
+
+.feature-card:hover .icon {
+    transform: rotateY(360deg) scale(1.15);
+}
+
+/* Download button hover */
+.download-btn {
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.download-btn:hover {
+    transform: translateY(-5px) scale(1.02);
+}
+
+/* ============================================
+   12. RESPONSIVE DESIGN - TABLET (768px+)
+   ============================================ */
+@media (min-width: 768px) {
+    :root {
+        --container-padding: 2rem;
+    }
+
+    .nav {
+        display: flex;
+        gap: var(--space-lg);
+    }
+
+    .nav a {
+        font-weight: var(--font-weight-medium);
+        color: var(--text-color);
+        padding: var(--space-xs) var(--space-sm);
+        border-radius: var(--radius-sm);
+        transition: all var(--transition-base);
+    }
+
+    .nav a:hover {
+        color: var(--primary-color);
+        background-color: rgba(0, 150, 136, 0.1);
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-2xl);
+    }
+
+    .hero-content {
+        text-align: right;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-buttons {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-xl);
+    }
+
+    .screenshots-container {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .download-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .footer-content {
+        grid-template-columns: repeat(3, 1fr);
+        text-align: right;
+    }
+
+    .footer-links {
+        align-items: flex-start;
+    }
+}
+
+/* ============================================
+   13. RESPONSIVE DESIGN - DESKTOP (1024px+)
+   ============================================ */
+@media (min-width: 1024px) {
+    .hero {
+        padding: var(--space-3xl) 0;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .hero-description {
+        font-size: 1.2rem;
+    }
+
+    .phone-mockup {
+        width: 320px;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .screenshot-card {
+        width: 280px;
+    }
+}
+
+/* ============================================
+   14. ACCESSIBILITY & PERFORMANCE
+   ============================================ */
 @media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+
     .animate-on-scroll {
-        transition: none;
         opacity: 1;
         transform: none;
     }
+}
+
+/* Focus visible for keyboard navigation */
+:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Performance optimizations */
+.phone-mockup,
+.screenshot-card,
+.feature-card,
+.btn {
+    will-change: transform;
+}
+
+/* ============================================
+   15. PAGE TRANSITIONS & SECTION ANIMATIONS
+   ============================================ */
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Section fade in on view */
+section {
+    opacity: 0;
+    animation: sectionFadeIn 0.8s ease-out forwards;
+}
+
+@keyframes sectionFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Stagger section animations */
+.hero {
+    animation-delay: 0s;
+}
+
+.features {
+    animation-delay: 0.1s;
+}
+
+.screenshots-section {
+    animation-delay: 0.2s;
+}
+
+.download-section {
+    animation-delay: 0.3s;
+}
+
+.footer {
+    animation-delay: 0.4s;
+}
+
+/* Link click transition effect */
+a[href^="#"] {
+    position: relative;
+    transition: all var(--transition-base);
+}
+
+a[href^="#"]::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: var(--radius-sm);
+    background: var(--primary-color);
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all var(--transition-fast);
+    z-index: -1;
+}
+
+a[href^="#"]:active::before {
+    opacity: 0.1;
+    transform: scale(1);
+}
+
+/* Section highlight on scroll */
+section.in-view {
+    position: relative;
+}
+
+/* Navigation active state */
+.nav a.active {
+    color: var(--primary-color);
+    background-color: rgba(0, 150, 136, 0.1);
+}
+
+/* Fade out on exit */
+.fade-out {
+    animation: fadeOut 0.3s ease-out forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+/* Loading state for page transitions */
+.page-loading {
+    pointer-events: none;
+    cursor: wait;
+}
+
+.page-loading * {
+    cursor: wait !important;
 }
