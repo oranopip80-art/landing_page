@@ -123,7 +123,7 @@ async def download_app(request: Request):
     )
     
     # Return file for download
-    file_path = "assets/penthu-app.apk"
+    file_path = "assets/penthu_app.apk"
     
     if os.path.exists(file_path):
         # Get notification HTML
@@ -148,7 +148,7 @@ async def download_app(request: Request):
             <script>
                 // Trigger download
                 const link = document.createElement('a');
-                link.href = '/assets/penthu-app.apk';
+                link.href = '/assets/penthu_app.apk';
                 link.download = 'Penthu-v3.5.7.apk';
                 document.body.appendChild(link);
                 link.click();
